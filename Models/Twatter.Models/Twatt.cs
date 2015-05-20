@@ -7,11 +7,12 @@ namespace Twatter.Models
 {
     public class Twatt
     {
+        [Key]
+        public Guid Id { get; set; }
         [MaxLength(140)]
         [Required]
         public string Content { get; set; }
         public DateTime TwattDate { get; set; }
-        [ForeignKey("Id")]
         public User Poster { get; set; }
         public ICollection<Twatt> Replies { get; set; }
         public ICollection<Twatt> ReTwatts { get; set; }

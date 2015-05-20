@@ -1,4 +1,6 @@
+using System.Configuration;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Twatter.Data.Migrations;
 using Twatter.Models;
 
 namespace Twatter.Data
@@ -23,17 +25,15 @@ namespace Twatter.Data
         public TwatterDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TwatterDbContext,TwatterMigrationsConfig>());
         }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
-
+        
         public static TwatterDbContext Create()
         {
             return new TwatterDbContext();
         }
+        public IDbSet<Trend> Trends { get; set; }
+        public IDbSet<Twatt> Twatts { get; set; }
     }
 
     //public class MyEntity

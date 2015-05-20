@@ -13,7 +13,7 @@ namespace Twatter.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public ICollection<Twatt> FavouriteTwatts { get; set; }
-        public ICollection<Twatt> PostedTwatts { get; set; }
+        public ICollection<Twatt> Twatts { get; set; }
         public ICollection<User> Following { get; set; }
         public ICollection<User> Followers { get; set; }
         
