@@ -36,9 +36,4 @@ namespace Twatter.Data
         public IDbSet<Twatt> Twatts { get; set; }
     }
 
-    //public class MyEntity
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //}
 }

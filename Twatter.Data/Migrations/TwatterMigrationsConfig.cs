@@ -11,7 +11,7 @@ namespace Twatter.Data.Migrations
         public TwatterMigrationsConfig()
         {
             this.AutomaticMigrationsEnabled = true;
-            this.AutomaticMigrationDataLossAllowed = false;
+            this.AutomaticMigrationDataLossAllowed = true;
         }
     }
 }

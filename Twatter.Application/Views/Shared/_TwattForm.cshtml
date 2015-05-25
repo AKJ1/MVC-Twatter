@@ -1,0 +1,36 @@
+﻿@model Twatter.Application.Models.TwattPostModel
+
+
+@Html.AntiForgeryToken()
+<div class="col-md-10 col-md-offset-1 form-group">
+    <fieldset>
+        <h4>Post a new Twatt!</h4>
+        @using (Html.BeginForm("Create", "Twatt", FormMethod.Post))
+        {
+            @Html.EditorForModel(Model)
+            @Html.TextAreaFor(tm => tm.Text, new
+            {
+                @class = "form-control",
+                @rows = "5",
+                @cols = "60",
+                @placeholder = "Share something ..."
+            })
+            @Html.HiddenFor(tm => tm.TwattId, new
+            {
+                @value = 0
+            })
+            @Html.HiddenFor(tm => tm.isReply, new
+            {
+                @value = false
+            })
+            <br />
+            <div class="pull-right ">
+                <button type="submit" class="btn btn-primary">Tweet!</button>
+            </div>
+        }
+    </fieldset>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

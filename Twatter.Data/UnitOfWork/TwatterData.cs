@@ -4,7 +4,7 @@
     using Repository;
     using Models;
 
-    public class UnitOfWork : IDisposable
+    public class TwatterData : IDisposable
     {
         private TwatterDbContext context = new TwatterDbContext();
 
@@ -48,7 +48,7 @@
         }
         #endregion
 
-        #region UnitOfWork Class Methods
+        #region TwatterData Class Methods
         public void Dispose()
         {
             Dispose(true);

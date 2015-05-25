@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twatter.Tests", "Twatter.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twatter.Data", "Twatter.Data\Twatter.Data.csproj", "{1DA3EE1B-3021-4CEC-8157-15F981C4EC9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twatter.Libs", "Twatter.Libs\Twatter.Libs.csproj", "{6539EB03-31A9-48FA-8971-67DFF0A8E094}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twatter.Models", "Models\Twatter.Models\Twatter.Models.csproj", "{87F925D5-1423-41D1-B6F9-C4AB2D10B71A}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{1DA3EE1B-3021-4CEC-8157-15F981C4EC9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DA3EE1B-3021-4CEC-8157-15F981C4EC9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DA3EE1B-3021-4CEC-8157-15F981C4EC9D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6539EB03-31A9-48FA-8971-67DFF0A8E094}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6539EB03-31A9-48FA-8971-67DFF0A8E094}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6539EB03-31A9-48FA-8971-67DFF0A8E094}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6539EB03-31A9-48FA-8971-67DFF0A8E094}.Release|Any CPU.Build.0 = Release|Any CPU
 		{87F925D5-1423-41D1-B6F9-C4AB2D10B71A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{87F925D5-1423-41D1-B6F9-C4AB2D10B71A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87F925D5-1423-41D1-B6F9-C4AB2D10B71A}.Release|Any CPU.ActiveCfg = Release|Any CPU

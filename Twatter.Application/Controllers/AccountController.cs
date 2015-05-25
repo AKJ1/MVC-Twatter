@@ -482,5 +482,22 @@ namespace Twatter.Application.Controllers
             }
         }
         #endregion
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        public ActionResult Edit(FormCollection collection)
+        {
+            if (collection.Count == 5)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Edit");
+            }
+        }
     }
 }

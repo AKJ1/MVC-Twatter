@@ -13,11 +13,23 @@ namespace Twatter.Models
         [Required]
         public string Content { get; set; }
         public DateTime TwattDate { get; set; }
+        
+        
+        public string PosterId { get; set; }
+
+        [Required]
+        [ForeignKey("PosterId")]
         public User Poster { get; set; }
-        public ICollection<Twatt> Replies { get; set; }
-        public ICollection<Twatt> ReTwatts { get; set; }
+        public virtual Twatt Reply { get; set; }
+        public virtual Twatt ReTwatt { get; set; }
+        [InverseProperty("Reply")]
+        public virtual ICollection<Twatt> Replies { get; set; }
+        [InverseProperty("ReTwatt")]
+        public virtual ICollection<Twatt> ReTwatts { get; set; }
         public bool IsReply { get; set; }
-        public Twatt ReplyOf { get; set; }
+        [ForeignKey("ReplyToId")]
+        public Twatt ReplyTo { get; set; }
+        public int? ReplyToId { get; set; }
         public bool IsRetwatt { get; set; }
     }
 }

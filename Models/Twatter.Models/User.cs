@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -12,9 +14,14 @@ namespace Twatter.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public virtual User Follower { get; set; }
+        public virtual User Followee { get; set; }
         public ICollection<Twatt> FavouriteTwatts { get; set; }
         public ICollection<Twatt> Twatts { get; set; }
+        [InverseProperty("Followee")]
         public ICollection<User> Following { get; set; }
+        [InverseProperty("Follower")]
         public ICollection<User> Followers { get; set; }
         
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)

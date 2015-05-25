@@ -20,5 +20,16 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
+}
+.menu-item {
+      position: relative;
+      display: block;
+      padding: 15px 15px
+}
+.white-text {
+    color: #fff;
+}
+.gray-text {
+    color: #999
 }
