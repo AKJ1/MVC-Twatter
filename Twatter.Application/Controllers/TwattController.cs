@@ -25,16 +25,16 @@ namespace Twatter.Application.Controllers
         [Authorize]
         public ActionResult Create(TwattPostModel model)
         {
-            return Json(model);
+            //return Json(model);
             try
             {
-                bool isReply = model.isReply != null && (bool) model.isReply;
+                bool isReply = model.IsReply != null && (bool) model.IsReply;
                 Twatt twatt = new Twatt()
                 {
                     Content = model.Text,
-                    PosterId = User.Identity.GetUserId(),
+                    Poster = data.UserRepository.GetById(User.Identity.GetUserId()),
                     IsReply = isReply,
-                    ReplyToId = model.TwattId
+                    ReplyTo = data.TwattRepository.GetById(model.TwattId)
                 };
                 data.TwattRepository.Create(twatt);
                 if (isReply)
@@ -43,8 +43,10 @@ namespace Twatter.Application.Controllers
                     Twatt updateTwatt = data.TwattRepository.Get(t => t.Id == replyToId).First();
                     updateTwatt.Replies.Add(twatt);
                     data.TwattRepository.Update(updateTwatt);
-                } 
-                return Json(twatt);
+                }
+                data.Save();
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+                
             }
             catch
             {

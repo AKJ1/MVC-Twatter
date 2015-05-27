@@ -14,17 +14,14 @@ namespace Twatter.Application.Controllers
     {
         private TwatterData data = new TwatterData();
 
-
-
-
-
         [Route("/{username}")]
         public ActionResult Index(string username = null)
         {
             if (username != null)
             {
-                TwattViewModel viewModel =
-                new TwattViewModel(data.TwattRepository.Get(t => t.Poster.UserName == username)
+                TwattViewModel viewModel = new TwattViewModel();
+                viewModel.Twatts = (data.TwattRepository.Get(t => t.Poster.UserName == username)
+                    .Take(50)
                     .OrderByDescending(t => t.TwattDate)
                     .ToList());
 
@@ -36,8 +33,11 @@ namespace Twatter.Application.Controllers
             else if (Request.IsAuthenticated)
             {
                 username = User.Identity.GetUserName();
-                TwattViewModel viewModel =
-                    new TwattViewModel(data.TwattRepository.Get(t => t.Poster.UserName == username).ToList());
+                TwattViewModel viewModel = new TwattViewModel();
+                viewModel.Twatts = data.TwattRepository.Get(t => t.Poster.UserName == username)
+                    .Take(50)
+                    .OrderByDescending(t => t.TwattDate)
+                    .ToList();
 
                 return View(new TwattModel()
                 {

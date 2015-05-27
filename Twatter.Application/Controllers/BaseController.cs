@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Twatter.Data.UnitOfWork;
 
 namespace Twatter.Application.Controllers
 {
-    public class UserController : Controller
+    public class BaseController : Controller
     {
-        // GET: User
-        public ActionResult Index()
+        public TwatterData Data;
+
+        public BaseController()
         {
-            return View();
+            this.Data = new TwatterData();
         }
     }
 }

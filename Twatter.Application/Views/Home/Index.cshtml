@@ -1,36 +1,68 @@
-﻿@using Twatter.Application.Models
+﻿@using Microsoft.AspNet.Identity
+@using Twatter.Application.Models
 @using Twatter.Models
+@model Twatter.Application.Models.TwattModel
 @{
     ViewBag.Title = "Home Page";
 }
-@model Twatter.Application.Models.TwattModel 
+
 @if (Request.IsAuthenticated)
 {
 
     <div class="row">
         <div>
-            @{
-                Html.Editor("_TwattEdit");
-            }
+            @Html.Partial("_TwattForm", this.Model.PostModel)
         </div>
         <div class="col-md-8 col-md-offset-2">
             @foreach (var twatt in Model.ViewModel.Twatts)
             {
-                <div>
-                    <span class="text-primary">@Html.ActionLink(twatt.Poster.FirstName + twatt.Poster.LastName, "Index", "User", routeValues: new { UserName = twatt.Poster.UserName }, htmlAttributes: null) </span> <span class="text-muted">@@@twatt.Poster.UserName</span>
-                </div>
-                <hr />
-                <div class="row">
-                    <span class="twatt-content text-center"> @twatt.Content</span>
-                </div>
-                <div class="actions btn-group">
-                    <button class="btn btn-default"> <span class="glyphicon glyphicon-retweet"></span></button>
-                    <button class="btn btn-default"> <span class="glyphicon favourite glyphicon-star-empty"></span></button>
-                    <button class="btn btn-default"> <span class="glyphicon reply glyphicon-share-alt"></span></button>
-                    <button class="btn btn-default"> <span class="glyphicon share glyphicon-share" data-togle="dropdown" aria-expanded="false"></span></button>
+                <div class="twatt-container">
+                    <div class="twatt-poster">
+                        <small class="text-muted">by </small>
+                        <span class="text-primary capitalize">@Html.ActionLink(twatt.Poster.FirstName + " " + twatt.Poster.LastName, "Index", "Home", routeValues: new {User = twatt.Poster.UserName}, htmlAttributes: null) </span>
+                        <span class="text-muted">@@@twatt.Poster.UserName</span>
+                        <span class="text-muted twatt-time-ago" time="@DateTime.Now.Subtract(twatt.TwattDate).TotalMilliseconds"></span>
+                    </div>
+                    <div class="twatt-content-container">
+                        <span class="twatt-content text-center"> @twatt.Content</span>
+                    </div>
+                    <div class="actions btn-group twatt-actions">
+                        <button class="btn btn-default" onclick="app.retwatt(@twatt.Id)"><span class="glyphicon glyphicon-retweet"></span></button>
+                        <button class="btn btn-default"> <span class="glyphicon favourite glyphicon-star-empty"></span></button>
+                        <button class="btn btn-default" onclick="$('#@twatt.Id-dropdown').toggle()"> <span class="glyphicon reply glyphicon-share-alt"></span></button>
+                        <button class="btn btn-default"> <span class="glyphicon share glyphicon-share dropdown-toggle" data-togle="dropdown" aria-expanded="true"></span></button>
+                        <div hidden="true" id="@twatt.Id-dropdown">
+                            @Html.Partial("_TwattForm", new TwattPostModel()
+                            {
+                                IsReply = true,
+                                TwattId = twatt.Id
+                            })
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li>Report</li>
+                            <hr />
+                            @if (twatt.Poster.Id != User.Identity.GetUserId())
+                            {
+                                <li>Direct message</li>
+                                <li>Unfollow</li>
+                                <li>Block</li>
+                            }
+                            <li>Follow</li>
+                        </ul>
+                    </div>
                 </div>
             }
         </div>
     </div>
 
+}
+else
+{
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="jumbotron">
+                <h2>Twatter!</h2>
+            </div>
+        </div>
+    </div>
 }

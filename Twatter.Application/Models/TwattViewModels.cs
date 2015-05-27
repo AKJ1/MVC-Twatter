@@ -8,9 +8,10 @@ namespace Twatter.Application.Models
 {
     public class TwattPostModel
     {
-        public string Text;
-        public int? TwattId;
-        public bool? isReply;
+        public string Text { get; set; }
+        public int? TwattId { get; set; }
+        public bool? IsReply { get; set; }
+
     }
 
     public class TwattModel
@@ -18,17 +19,15 @@ namespace Twatter.Application.Models
         public TwattPostModel PostModel;
         public TwattViewModel ViewModel;
 
+        public TwattModel()
+        {
+            this.PostModel = new TwattPostModel();
+            this.ViewModel = new TwattViewModel();
+        }
+
     }
     public class TwattViewModel
     {
-        public TwattViewModel(List<Twatt> twatts)
-        {
-           this.Twatts = twatts; 
-        }
-        public TwattViewModel()
-        {
-            this.Twatts = new List<Twatt>();
-        }
-        public List<Twatt> Twatts;
+        public List<Twatt> Twatts { get; set; }
     }
 }

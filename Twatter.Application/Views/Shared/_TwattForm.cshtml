@@ -1,13 +1,19 @@
 ﻿@model Twatter.Application.Models.TwattPostModel
-
-
-@Html.AntiForgeryToken()
 <div class="col-md-10 col-md-offset-1 form-group">
     <fieldset>
-        <h4>Post a new Twatt!</h4>
-        @using (Html.BeginForm("Create", "Twatt", FormMethod.Post))
+        @if (Model.IsReply != null)
         {
-            @Html.EditorForModel(Model)
+            if ((bool)Model.IsReply)
+            {
+                <h4>Reply!</h4>
+            }
+        }
+        else
+        {
+            <h4>Post a new Twatt!</h4>
+        }
+        @using (Html.BeginForm("Create", "Twatt", FormMethod.Post, new {@role = "form", @class = "TwattForm"}))
+        {
             @Html.TextAreaFor(tm => tm.Text, new
             {
                 @class = "form-control",
@@ -19,13 +25,13 @@
             {
                 @value = 0
             })
-            @Html.HiddenFor(tm => tm.isReply, new
+            @Html.HiddenFor(tm => tm.IsReply, new
             {
                 @value = false
             })
-            <br />
+            <br/>
             <div class="pull-right ">
-                <button type="submit" class="btn btn-primary">Tweet!</button>
+                <button type="submit" class="btn btn-primary" value="Ok">Twatt!</button>
             </div>
         }
     </fieldset>

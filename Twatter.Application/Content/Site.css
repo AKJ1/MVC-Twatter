@@ -33,3 +33,24 @@ textarea {
 .gray-text {
     color: #999
 }
+
+.twatt-container {
+    border-corner-shape: curve;
+    margin: 20px;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 5px;
+    background-color: #f0f8ff;
+    border: 1px solid #d0d8dd;
+}
+.twatt-content-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 12pt;
+    margin-bottom: 15px;
+}
+.twatt-poster {
+    margin: 0;
+    padding: 0;
+}
